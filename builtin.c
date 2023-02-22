@@ -45,9 +45,9 @@ int _mycd(info_t *info)
 		dir = _getenv(info, "HOME=");
 		if (!dir)
 			chdir_ret = /* TODO: what should this be? */
-				chdir((dir = _getenv(info, "PWD=")) ? : "/");
+				chdir((dir = _getenv(info, "PWD=")) ? dir : "/");
 		else
-			chdir_ret + chdir(dir);
+			chdir_ret = chdir(dir);
 	}
 	else if (_strcmp(info->argv[1], "-") == 0)
 	{
